@@ -12,20 +12,24 @@ extern int asserts_failed;	// Gets reset by TEST()
 #define ASSERT(msg,condition)	\
 do{ \
 	if (!(condition)) { \
-		printf("\t%s\n", msg); \
+		if (!asserts_failed) { \
+			printf("FAIL\n"); \
+		} \
+		printf("%s\n", msg); \
 		asserts_failed++; \
 	}; \
 } while(0)
 
-#define TEST(test)	\
+#define TEST(name,test)	\
 do{ \
+	tests_run++; \
+	printf("%d: %s... ", tests_run, name); \
 	asserts_failed = 0; \
 	test(); \
-	tests_run++; \
 	if (asserts_failed) { \
 		tests_failed++; \
 	} else { \
-		printf("\tOK\n"); \
+		printf("OK\n"); \
 	}; \
 } while(0)
 
