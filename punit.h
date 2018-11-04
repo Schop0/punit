@@ -12,7 +12,7 @@ extern int asserts_failed;	// Gets reset by TEST()
 #define ASSERT(msg,condition)	\
 do{ \
 	if (!(condition)) { \
-		printf("\t%s\n", msg); \
+		printf("%s\n", msg); \
 		asserts_failed++; \
 	}; \
 } while(0)
@@ -25,7 +25,7 @@ do{ \
 	if (asserts_failed) { \
 		tests_failed++; \
 	} else { \
-		printf("\tOK\n"); \
+		printf("OK\n"); \
 	}; \
 } while(0)
 
